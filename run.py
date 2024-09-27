@@ -1,9 +1,12 @@
 import os
-from gamebacklog import app
+from gamebacklog import app, db
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
+
+    def create_tables(self):
+        with app.app_context():
+            db.create_all()
+    create_tables(db)
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
